@@ -2,14 +2,14 @@ package fr.ecole3il.rodez2023.perlin;
 
 public class MauvaiseValeurException extends IllegalArgumentException {
 
-    private double mauvaiseValeur;
+    private String msg;
 
-    public MauvaiseValeurException(double mauvaiseValeur) {
+    public MauvaiseValeurException(String msg) {
         super();
-        this.mauvaiseValeur = mauvaiseValeur;
+        this.msg = msg;
     }
 
-    public double getMauvaiseValeur() {
-        return mauvaiseValeur;
+    public String getMsg() {
+        return msg;
     }
 }
