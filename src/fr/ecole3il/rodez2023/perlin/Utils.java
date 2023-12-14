@@ -48,11 +48,19 @@ public class Utils {
      * @author philibert roquart, fainéant
      */
     public static int[] melanger(int[] tab, long seed) {
-        // Mélanger le tableau de permutation en utilisant 
-    	// ...
-    	// Bon, je le ferai plus tard, je vais réviser l'espagnol
-    	// Je mets ça, ça marchera bien en attendant
-    	// tant pis
+        // Création d'un objet Random qui va servir à générer des valeurs des index du tableau
+        Random rdm = new Random(seed);
+
+        for (int i = tab.length -1; i > 0; i--) {
+            int valAMelanger = rdm.nextInt(i + 1);
+
+            // Echange des valeurs entre deux index à l'aide de variables temporaires
+            int tmp1 = tab[i];
+            int tmp2 = tab[valAMelanger];
+            tab[i] = tmp2;
+            tab[valAMelanger] = tmp1;
+        }
+
         return tab;
     }
 
@@ -62,11 +70,13 @@ public class Utils {
      * @param height Le deuxième nombre.
      * @return Le plus petit des deux nombres.
      * 
-     * @author philibert roquart, fainéant
+     * @author Jade Causse
      */
     public static double min(int width, int height) {
-    	// pas le temps, j'ai mes exos de chimie à finir
-    	return 1;
+        // Compare les deux valeurs numériquement
+        int min = Integer.compare(width, height);
+        if (min > 0 || min == 0) return width;
+        return height;
     }
 
     /**

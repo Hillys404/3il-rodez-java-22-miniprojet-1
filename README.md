@@ -1,2 +1,2 @@
 Question : pourquoi l'attribut graine est-il en final ?
-La valeur de la graine utilisée ne changera pas durant la génération de tous les bruits.
+La valeur de la graine ne doit pas changer durant l'exécution du code.

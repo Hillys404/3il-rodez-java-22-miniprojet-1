@@ -8,6 +8,22 @@ import java.util.Random;
  */
 public class BruitAleatoire extends Bruit2D {
 
-    public BruitAleatoire(long graine, double resolution);
-    
+    private final double rdm;
+
+    public BruitAleatoire(long graine, double resolution) {
+        super(graine, resolution);
+        rdm = new Random().nextDouble(graine);
+    }
+
+    /**
+     * Génère aléatoirement la valeur de bruit en 2D obtenir le bruit.
+     * @param x Coordonnée x pour laquelle
+     * @param y Coordonnée y pour laquelle obtenir le bruit.
+     * @return : la valeur du bruit
+     */
+    @Override
+    public double bruit2D(double x, double y) {
+        return rdm;
+    }
+
 }

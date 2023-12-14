@@ -1,5 +1,6 @@
 package fr.ecole3il.rodez2023.perlin.math;
 
+import fr.ecole3il.rodez2023.perlin.Utils;
 
 /**
  * @author philibert roquart, fainéant
@@ -28,9 +29,15 @@ public class BruitPerlin2D extends Bruit2D {
 
 	public BruitPerlin2D(long graine, double resolution) {
 		super(graine, resolution);
-		this.permutation = PERMUTATION;
+		this.permutation = Utils.melanger(PERMUTATION, graine);
 	}
 
+	/**
+	 * Génère aléatoirement la valeur de bruit en 2D
+	 * @param x Coordonnée x pour laquelle obtenir le bruit.
+	 * @param y Coordonnée y pour laquelle obtenir le bruit.
+	 * @return : la valeur du bruit
+	 */
 	@Override
 	public double bruit2D(double x, double y) {
 		double tempX, tempY;
@@ -38,8 +45,8 @@ public class BruitPerlin2D extends Bruit2D {
 		double unit = 1.0f / (double) Math.sqrt(2);
 		double tmp, s, t, u, v, Cx, Cy, Li1, Li2;
 		// Adapter pour la résolution
-		x /= resolution;
-		y /= resolution;
+		x /= super.getResolution();
+		y /= super.getResolution();
 
 		// Obtenir les coordonnées de la grille associées à (x, y)
 		x0 = (int) (x);
