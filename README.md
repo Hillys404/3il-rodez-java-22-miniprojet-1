@@ -15,3 +15,5 @@ Seuls les valeurs de trois attributs vont changer, de ce fait, il est préférab
 
 **Question : quel type utilisez-vous ?**
 Pour les trois attributs, j'utilise le type double.
+
+**Question : pourquoi sortir, selon vous, ce bout d'algorithme de la classe ?**

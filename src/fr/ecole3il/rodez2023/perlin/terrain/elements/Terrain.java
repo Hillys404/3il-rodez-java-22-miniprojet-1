@@ -7,6 +7,13 @@ public class Terrain {
 
     private double hydrometrie, temperature, altitude;
 
+    /**
+     * Construit un terrain à l'aide de trois paramètres
+     * @param hydrometrie
+     * @param temperature
+     * @param altitude
+     * @throws MauvaiseValeurException
+     */
     public Terrain(double hydrometrie, double temperature, double altitude) throws MauvaiseValeurException {
         try {
             if (hydrometrie < 0 || hydrometrie > 1
@@ -23,15 +30,31 @@ public class Terrain {
         }
     }
 
+    /**
+     * Retourne l'hydrométrie du terrain
+     * @return
+     */
     public double getHydrometrie() { return hydrometrie; }
 
+    /**
+     * Retourne la température du terrain
+     * @return
+     */
     public double getTemperature() { return temperature; }
 
+    /**
+     * Retourne l'altitude du terrain
+     * @return
+     */
     public double getAltitude() { return altitude; }
 
+    /**
+     * Retourne le type de terrain généré
+     * @param dt
+     * @return
+     */
     public TypeTerrain getTypeTerrain(DetermineurTerrain dt) {
-
-        return null;
+        return dt.determinerTerrain(altitude, hydrometrie, temperature);
     }
 
 }
