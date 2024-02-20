@@ -5,17 +5,23 @@ import fr.ecole3il.rodez2023.perlin.Utils;
 import java.awt.image.BufferedImage;
 
 public enum TypeTerrain {
-    COLLINES,
-    DESERT,
-    FORET_CONIFÈRES,
-    FORET_FEUILLUS,
-    MARAIS,
-    MONTAGNE,
-    OCEAN,
-    PLAINE,
-    TOUNDRA;
+    COLLINES("../../data/hills.png"),
+    DESERT("../../data/desert.png"),
+    FORET_CONIFÈRES("../../data/coniferous_forest.png"),
+    FORET_FEUILLUS("../../data/deciduous_forest.png"),
+    MARAIS("../../data/marsh.png"),
+    MONTAGNE("../../data/moutain.png"),
+    OCEAN("../../data/ocean.png"),
+    PLAINE("../../data/plain.png"),
+    TOUNDRA("../../data/tundra.png");
 
-    public BufferedImage getImage(String nomFichier) {
+	private String nomFichier;
+	
+    private TypeTerrain(String nomFichier) {
+		this.nomFichier = nomFichier;
+	}
+
+	public BufferedImage getImage() {
         return Utils.chargerTuile(nomFichier);
     }
 

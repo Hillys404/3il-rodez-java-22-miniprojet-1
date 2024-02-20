@@ -38,6 +38,8 @@ public class Carte {
 		this.largeur = sc.nextInt();
 		this.hauteur = sc.nextInt();
 		
+		this.terrains = new Terrain[largeur][hauteur];
+		
 		// On attribue à chaque terrain ses propriétés
 		for (int x = 0; x < largeur; x++) {
 			for (int y = 0; y < hauteur; y++) {

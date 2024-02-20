@@ -50,6 +50,11 @@ public class VisualiseurCarteTerrain extends JFrame {
      * @param panelHeight La hauteur du panneau.
      */
     public void drawCarte(Carte carte, Graphics g, int panelWidth, int panelHeight) {
+    	if (vte == null) {
+
+    		return;
+        }
+    	
         vte = new VisualiseurTerrainEnonce(carte);
         int largeur = carte.getLargeur();
         int hauteur = carte.getHauteur();
