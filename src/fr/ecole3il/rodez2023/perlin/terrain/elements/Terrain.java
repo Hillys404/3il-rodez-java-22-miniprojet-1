@@ -19,14 +19,14 @@ public class Terrain {
             if (hydrometrie < 0 || hydrometrie > 1
                 || temperature < 0 || temperature > 1
                 || altitude < -1 || altitude > 1) {
-                throw new MauvaiseValeurException("La valeur doit être comprise entre 0 et 1.");
+                throw new MauvaiseValeurException();
             }
 
             this.hydrometrie = hydrometrie;
             this.temperature = temperature;
             this.altitude = altitude;
         } catch (MauvaiseValeurException e) {
-            System.err.println(e.getMsg());
+            System.err.println(e.getMessage());
         }
     }
 
