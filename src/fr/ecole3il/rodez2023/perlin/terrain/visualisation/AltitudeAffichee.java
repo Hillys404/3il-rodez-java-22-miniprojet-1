@@ -4,5 +4,5 @@ public enum AltitudeAffichee {
 	FOND_MARIN,
 	BASSE,
 	MOYENNE,
-	ELEVEE
+	ELEVEE;
 }

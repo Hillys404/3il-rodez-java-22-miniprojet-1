@@ -24,6 +24,7 @@ import javax.swing.SwingUtilities;
 import fr.ecole3il.rodez2023.perlin.terrain.carte.Carte;
 import fr.ecole3il.rodez2023.perlin.terrain.carte.ManipulateurCarte;
 import fr.ecole3il.rodez2023.perlin.terrain.concrets.VisualiseurTerrainEnonce;
+import fr.ecole3il.rodez2023.perlin.terrain.elements.TerrainInexistantException;
 import fr.ecole3il.rodez2023.perlin.terrain.elements.TypeTerrain;
 import fr.ecole3il.rodez2023.perlin.terrain.generation.GenerateurAleatoire;
 import fr.ecole3il.rodez2023.perlin.terrain.generation.GenerateurPerlin;
@@ -48,12 +49,12 @@ public class VisualiseurCarteTerrain extends JFrame {
      * @param g L'objet Graphics pour dessiner.
      * @param panelWidth La largeur du panneau.
      * @param panelHeight La hauteur du panneau.
+     * @throws TerrainInexistantException 
      */
-    public void drawCarte(Carte carte, Graphics g, int panelWidth, int panelHeight) {
-    	if (vte == null) {
-
+    public void drawCarte(Carte carte, Graphics g, int panelWidth, int panelHeight) throws TerrainInexistantException {
+    	/*if (vte == null) {
     		return;
-        }
+        } */
     	
         vte = new VisualiseurTerrainEnonce(carte);
         int largeur = carte.getLargeur();
@@ -81,7 +82,12 @@ public class VisualiseurCarteTerrain extends JFrame {
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				if (carte != null) {
-					monObjet.drawCarte(carte, g, getWidth(), getHeight());
+					try {
+						monObjet.drawCarte(carte, g, getWidth(), getHeight());
+					} catch (TerrainInexistantException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
 		};
@@ -99,8 +105,14 @@ public class VisualiseurCarteTerrain extends JFrame {
 		        System.out.println("Coordonnées de la souris - X: " + x + ", Y: " + y);
 
 		        if (x >= 0 && x < carte.getLargeur() && y >= 0 && y < carte.getHauteur()) {
-		            TypeTerrain type = vte.getTypeTerrain(x, y);
-		            terrainLabel.setText("Terrain: " + type.toString());
+		            TypeTerrain type;
+					try {
+						type = vte.getTypeTerrain(x, y);
+						terrainLabel.setText("Terrain: " + type.toString());
+					} catch (TerrainInexistantException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 		        }
 		    }
 
@@ -122,10 +134,20 @@ public class VisualiseurCarteTerrain extends JFrame {
 		        if (x >= 0 && x < carte.getLargeur() && y >= 0 && y < carte.getHauteur()) {
 
 		            // Crée le contenu à afficher dans la fenêtre modale
-		            String contenu = "Altitude: " + vte.getAltitudeAffichee(x, y) + "\nHydrométrie: " + vte.getHydrometrieAffichee(x, y)+ "\nTempérature: " + vte.getTemperatureAffichee(x, y);
-
-		            // Affiche une fenêtre modale avec les informations de la tuile
-		            JOptionPane.showMessageDialog(cartePanel, contenu, "Informations de la tuile", JOptionPane.INFORMATION_MESSAGE);
+		            String contenu;
+					try {
+						contenu = "Altitude: " 
+								+ vte.getAltitudeAffichee(x, y) 
+								+ "\nHydrométrie: " 
+								+ vte.getHydrometrieAffichee(x, y)
+								+ "\nTempérature: " 
+								+ vte.getTemperatureAffichee(x, y);
+						// Affiche une fenêtre modale avec les informations de la tuile
+			            JOptionPane.showMessageDialog(cartePanel, contenu, 
+			            		"Informations de la tuile", JOptionPane.INFORMATION_MESSAGE);
+					} catch (TerrainInexistantException e1) {
+						e1.printStackTrace();
+					}
 		        }
 		    }
 		});
@@ -167,7 +189,11 @@ public class VisualiseurCarteTerrain extends JFrame {
 		            String cheminFichier = fichierSelectionne.getAbsolutePath();
 
 		            // Enregistrer la carte dans le fichier sélectionné
-		            ManipulateurCarte.enregistrerCarte(carte, cheminFichier);
+		            try {
+						ManipulateurCarte.enregistrerCarte(carte, cheminFichier);
+					} catch (TerrainInexistantException e1) {
+						e1.printStackTrace();
+					}
 		        }
 		    }
 		});

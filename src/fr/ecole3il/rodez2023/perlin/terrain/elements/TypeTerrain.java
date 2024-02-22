@@ -5,15 +5,15 @@ import fr.ecole3il.rodez2023.perlin.Utils;
 import java.awt.image.BufferedImage;
 
 public enum TypeTerrain {
-    COLLINES("../../data/hills.png"),
-    DESERT("../../data/desert.png"),
-    FORET_CONIFÈRES("../../data/coniferous_forest.png"),
-    FORET_FEUILLUS("../../data/deciduous_forest.png"),
-    MARAIS("../../data/marsh.png"),
-    MONTAGNE("../../data/moutain.png"),
-    OCEAN("../../data/ocean.png"),
-    PLAINE("../../data/plain.png"),
-    TOUNDRA("../../data/tundra.png");
+    COLLINES("hills.png"),
+    DESERT("desert.png"),
+    FORET_CONIFÈRES("coniferous_forest.png"),
+    FORET_FEUILLUS("deciduous_forest.png"),
+    MARAIS("marsh.png"),
+    MONTAGNE("mountain.png"),
+    OCEAN("ocean.png"),
+    PLAINE("plain.png"),
+    TOUNDRA("tundra.png");
 
 	private String nomFichier;
 	
@@ -27,7 +27,7 @@ public enum TypeTerrain {
 
     @Override
     public String toString() {
-
-        return "";
+    	String[] nomTerrain = nomFichier.split("(");
+        return nomTerrain[0];
     }
 }

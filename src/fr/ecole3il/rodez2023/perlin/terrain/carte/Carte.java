@@ -2,7 +2,7 @@ package fr.ecole3il.rodez2023.perlin.terrain.carte;
 
 import java.util.Scanner;
 
-import fr.ecole3il.rodez2023.perlin.TerrainInexistant;
+import fr.ecole3il.rodez2023.perlin.terrain.elements.TerrainInexistantException;
 import fr.ecole3il.rodez2023.perlin.terrain.elements.Terrain;
 import fr.ecole3il.rodez2023.perlin.terrain.generation.GenerateurCarte;
 
@@ -60,19 +60,19 @@ public class Carte {
 	 * Retourne le nom de la carte
 	 * @return
 	 */
-	public String getNom() { return this.nom; }
+	public String getNom() { return nom; }
 	
 	/**
 	 * Retourne la largeur de la carte
 	 * @return
 	 */
-	public int getLargeur() { return this.largeur; }
+	public int getLargeur() { return largeur; }
 	
 	/**
 	 * Retourne la hauteur de la carte
 	 * @return
 	 */
-	public int getHauteur() { return this.hauteur; }
+	public int getHauteur() { return hauteur; }
 
 	/**
 	 * Retourne le terrain présent sur la carte aux coordonnées 
@@ -80,10 +80,11 @@ public class Carte {
 	 * @param x
 	 * @param y
 	 * @return
+	 * @throws TerrainInexistantException 
 	 */
-	public Terrain getTerrain(int x, int y) {
+	public Terrain getTerrain(int x, int y) throws TerrainInexistantException {
 		if (x < 0  || y < 0 || x >= largeur || y >= hauteur) {
-			throw new TerrainInexistant("Les coordonnées ne peuvent pas être négative" 
+			throw new TerrainInexistantException("Les coordonnées ne peuvent pas être négative" 
 		+ " ou hors de la taille de la carte");
 		}
 		return this.terrains[x][y];
